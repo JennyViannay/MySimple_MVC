@@ -1,0 +1,84 @@
+{% extends 'layout_troll.html.twig' %}
+
+{% block content %}
+
+    <div class="nes-container is-dark">
+        <p>
+            <img src="https://ih1.redbubble.net/image.336797881.7482/pp,550x550.u1.jpg" alt="" style="width: 50px; margin: 15px;">
+            Find your joy here my dear !
+        </p>
+        <section class="topic">
+            <h2 id="members"><a href="#members">#</a>Products</h2>
+            <hr>
+            <section class="coreteam">
+                <h3 class="topic-title"><i class="nes-icon trophy"></i>Best seller</h3>
+                {% for item in items %}
+                <div class="coreteam-members">
+                    <section class="nes-container is-dark member-card">
+                        <div class="avatar">
+                            <img data-src="{{ item.img }}" alt="img" class="" src="{{ item.img }}">
+                        </div>
+                        <div class="profile">
+                            <h4 class="name">{{ item.title }}</h4>
+                            <p>{{ item.content }}</p>
+                            <p>{{ item.price }} $</p>
+                            <div>
+                                <a href="/item/show/{{ item.id }}">See</a>
+                                <a href="">Add</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                {% else %}
+                    <p>Nothing to sell, keep in touch bro !</p>
+                {% endfor %}
+            </section>
+            <section class="coreteam-emeriti">
+                <h3 class="topic-title"><i class="nes-icon star"></i>Popular</h3>
+                {% for item in items %}
+                    <div class="coreteam-members">
+                        <section class="nes-container is-dark member-card">
+                            <div class="avatar">
+                                <img data-src="{{ item.img }}" alt="img" class="" src="{{ item.img }}">
+                            </div>
+                            <div class="profile">
+                                <h4 class="name">{{ item.title }}</h4>
+                                <p>{{ item.content }}</p>
+                                <p>{{ item.price }} $</p>
+                                <div>
+                                    <a href="/item/show/{{ item.id }}">See</a>
+                                    <a href="">Add</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                {% else %}
+                    <p>Nothing to sell, keep in touch bro !</p>
+                {% endfor %}
+            </section>
+            <section class="contributors">
+                <h3 class="topic-title"><i class="nes-icon heart"></i>Crush on it !</h3>
+                {% for item in items %}
+                    <div class="coreteam-members">
+                        <section class="nes-container is-dark member-card">
+                            <div class="avatar">
+                                <img data-src="{{ item.img }}" alt="img" class="" src="{{ item.img }}">
+                            </div>
+                            <div class="profile">
+                                <h4 class="name">{{ item.title }}</h4>
+                                <p>{{ item.content }}</p>
+                                <p>{{ item.price }} $</p>
+                                <div>
+                                    <a href="/item/show/{{ item.id }}">See</a>
+                                    <a href="">Add</a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                {% else %}
+                    <p>Nothing to sell, keep in touch bro !</p>
+                {% endfor %}
+            </section>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <section class="topic">
+        <h2 id="members"><a href="#members">#</a>Kittens :</h2>
+        <section class="coreteam">
+            <div class="coreteam-members">
+                {% for item in items %}
+                <section class="nes-container is-dark member-card">
+                    <div class="avatar">
+                        <img data-src="{{ item.img }}" alt="kitten img" class="" src="{{ item.img }}">
+                    </div>
+                    <div class="profile">
+                        <h4 class="name">{{ item.name }}</h4>
+                        <p>Vie : {{ item.life }}</p>
+                        <p>Attaque : {{ item.atk }}</p>
+                        <a href="/cat/show/{{ item.id }}" class="nes-btn is-error">Voir</a>
+                    </div>
+                </section>
+                {% else %}
+                    <p>No kitten yet ... Create one <a href="/cat/add">here</a></p>
+                {% endfor %}
+            </div>
+        </section>
+        <a href="/cat/add" class="nes-btn is-primary">Ajouter</a>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <section class="nes-container with-title">
+        <h3 class="title">Edit Kitten {{ item.name }}</h3>
+        {% include 'Cat/_form.html.twig' %}
+        <a href="/cat/show/{{ item.id }}" class="nes-btn is-error">Back</a>
+    </section>
+{% endblock %}
+
+

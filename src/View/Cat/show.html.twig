@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <section class="nes-container with-title">
+        <h3 class="title">Kitten {{ item.name }}</h3>
+        <img src="{{ item.img }}" alr="{{ item.img }}" >
+        <p>Vie : {{ item.life }}</p>
+        <p>Attaque : {{ item.atk }}</p>
+        <a href="/cat/edit/{{ item.id }}" class="nes-btn is-success">Edit</a>
+        <a href="/cat/delete/{{item.id}}" class="nes-btn is-error">Supprimer</a>
+        <a href="/cat/index" class="nes-btn">Back</a>
+    </section>
+{% endblock %}

@@ -8,7 +8,7 @@
     <title>{% block title %}Kitten & Bullshit{% endblock %}</title>
 
     <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-    <link href="/assets/css/nes.css" rel="stylesheet" />
+    <link href="/assets/css/nes_dark.css" rel="stylesheet" />
     <script src="/assets/lib/vue.min.js"></script>
 
     <script src="/assets/lib/dialog-polyfill.js"></script>
@@ -33,16 +33,14 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="/">
-                    <h1><i class="snes-jp-logo brand-logo"></i>Kitten & Bullshit</h1>
+                    <h1><i class="nes-logo brand-logo"></i>Dark Anonymous</h1>
                 </a>
             </div>
 
             <div class="social-buttons">
                 <p>Menu</p>
                 <div class="share">
-                    <a href="https://twitter.com/share?text=NES.css%EF%BD%9CNES-style%20CSS%20Framework%20%40bc_rikko&url=https://nostalgic-css.github.io/NES.css/" target="_blank"><i class="nes-icon twitter"></i></a>
-                    <a href="https://www.facebook.com/sharer.php?u=https://nostalgic-css.github.io/NES.css/&t=NES.css%EF%BD%9CNES-style%20CSS%20Framework" target="_blank"><i class="nes-icon facebook"></i></a>
-                    <a href="https://www.linkedin.com/shareArticle?url=https%3A//nostalgic-css.github.io/NES.css/&title=NES.css%EF%BD%9CNES-style%20CSS%20Framework" target="_blank"><i class="nes-icon linkedin"></i></a>
+
                     <a href="https://github.com/nostalgic-css/NES.css" target="_blank"><i class="nes-icon github"></i></a>
                 </div>
             </div>
@@ -50,9 +48,8 @@
     </header>
     <div class="container">
         <main class="main-content">
-            <a class="github-link" :class="{ active:  scrollPos < 200 }" href="/troll/login" target="_blank" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
-                <p class="nes-balloon from-right">Hi,<br />ready to do some bullshit ?</p>
-                <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
+            <a class="github-link" :class="{ active:  scrollPos < 200 }" href="/" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
+                <i class="nes-charmander"></i>
             </a>
             {% block content %}{% endblock %}
         </main>

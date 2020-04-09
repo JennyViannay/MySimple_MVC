@@ -1,5 +1,19 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    <section class="nes-container with-title"><h3 class="title">Create a Kitten ? </h3>
+        <div id="radios" class="item">
+            <div style="background-color:#212529; padding: 1rem 0;">
+                <label>
+                    <input type="radio" class="nes-radio is-dark" name="answer-dark" checked="">
+                    <span><a href="/cat/add">Yes</a></span>
+                </label>
+
+                <label>
+                    <input type="radio" class="nes-radio is-dark" name="answer-dark">
+                    <span><a href="/cat/index">No</a></span>
+                </label>
+            </div>
+        </div>
+    </section>
 {% endblock %}

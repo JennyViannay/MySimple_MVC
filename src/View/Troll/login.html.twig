@@ -1,0 +1,66 @@
+{% extends 'layout_troll.html.twig' %}
+
+{% block content %}
+    <h1>Connect :</h1>
+    <p class="note nes-text is-error">{{ error }}</p>
+    <div id="inputs" class="item">
+        <form method="post">
+            <div class="nes-field">
+                <label for="pseudo_field">Pseudo :</label>
+                <input type="text" id="pseudo_field" class="nes-input" name="pseudo">
+            </div>
+
+            <div class="nes-field">
+                <label for="password_field">Password :</label>
+                <input type="password" id="password_field" class="nes-input" name="password">
+            </div>
+
+            <div class="nes-field">
+                <button type="submit" value="Valider" class="nes-btn is-primary">Go ! </button>
+            </div>
+        </form>
+    </div>
+
+    <section>
+        <button type="button" class="nes-btn is-error" onclick="document.getElementById('dialog-dark').showModal();">
+            Don't have account ?
+        </button>
+        <dialog class="nes-dialog is-dark" id="dialog-dark">
+
+            <section class="message-list">
+                <section class="message -left">
+                    <i class="nes-mario"></i>
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-left is-dark">
+                        <p>Send me a message to get access</p>
+                    </div>
+                </section>
+                <section class="message -right">
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-right is-dark">
+                        <form method="post">
+                            <div class="nes-field">
+                                <label for="pseudo_field">Who are you ? </label>
+                                <input type="text" id="pseudo_field" class="nes-input" name="pseudo">
+                            </div>
+
+                            <div class="nes-field">
+                                <label for="message_field">Magic word ? </label>
+                                <input type="text" id="message_field" class="nes-input" name="message">
+                            </div>
+
+                            <div class="nes-field">
+                                <button type="submit" value="Valider" class="nes-btn is-primary">Get access ! </button>
+                                <a href="/troll/login" class="nes-btn is-error">Go back</a>
+                            </div>
+                        </form>
+                    </div>
+                    <i class="nes-squirtle"></i>
+                </section>
+            </section>
+        </dialog>
+    </section>
+
+
+
+{% endblock %}
