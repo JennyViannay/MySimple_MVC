@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Model\UserManager;
 use App\Model\ItemManager;
+use App\Model\BasketManager;
 
 /**
  * Class TrollController
@@ -19,6 +20,14 @@ use App\Model\ItemManager;
 class TrollController extends AbstractController
 {
 
+    /**
+     * @param null $pseudo
+     * @param null $password
+     * @return string|void
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function login($pseudo = null, $password = null)
     {
         $userManager = new UserManager();
@@ -26,7 +35,9 @@ class TrollController extends AbstractController
             if(!empty($_POST['pseudo']) && !empty($_POST['password'])){
                 $item['pseudo'] = $_POST['pseudo'];
                 $item['password'] = $_POST['password'];
-                if($userManager->verify($item) === true){
+                if($userManager->verify($item) > 0){
+                    $_SESSION['isConnected'] = true;
+                    $_SESSION['user_id'] = $userManager->verify($item);
                     return header('Location: /troll/home');
                 } else {
                     return $this->twig->render('Troll/login.html.twig', ['error' => "INCORRECT ID"]);
@@ -35,56 +46,63 @@ class TrollController extends AbstractController
                 return $this->twig->render('Troll/login.html.twig', ['error' => "Please enter PSEUDO & PASSWORD !"]);
             }
         }
-        return $this->twig->render('Troll/login.html.twig');
+        return $this->twig->render('Troll/login.html.twig', ['session' => false]);
     }
 
+    public function logout()
+    {
+        session_destroy();
+        return $this->twig->render('Home/index.html.twig');
+    }
+
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function home()
     {
-        $itemManager = new ItemManager();
-        $items = $itemManager->selectAll();
-        return $this->twig->render('Troll/home.html.twig', ['items' => $items]);
-    }
-
-
-    /**
-     * Display item informations specified by $id
-     *
-     * @param int $id
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function show(int $id)
-    {
-        $userManager = new UserManager();
-        $item = $userManager->selectOneById($id);
-
-        return $this->twig->render('Troll/show.html.twig', ['item' => $item]);
-    }
-
-
-    /**
-     * Display item edition page specified by $id
-     *
-     * @param int $id
-     * @return string
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
-     */
-    public function edit(int $id): string
-    {
-        $userManager = new UserManager();
-        $item = $userManager->selectOneById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $item['pseudo'] = $_POST['pseudo'];
-            $item['password'] = $_POST['password'];
-            $userManager->update($item);
+        if ($_SESSION['isConnected'] === true){
+            $basket_id = null;
+            $itemManager = new ItemManager();
+            $items = $itemManager->selectAll();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $this->shop($_POST);
+            }
+            return $this->twig->render('Troll/home.html.twig', [
+                'items' => $items,
+                'session' => true,
+                'userId' => $_SESSION['user_id']
+            ]);
         }
+        return $this->twig->render('Home/index.html.twig');
+    }
 
-        return $this->twig->render('Troll/edit.html.twig', ['item' => $item]);
+
+    /**
+     * @param string $id
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function edit(string $id): string
+    {
+        if($_SESSION['isConnected'] === true){
+            $userManager = new UserManager();
+            $item = $userManager->selectOneById($id);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $item['pseudo'] = $_POST['pseudo'];
+                $item['password'] = $_POST['password'];
+                $item['avatar'] = $_POST['avatar'];
+                $userManager->update($item);
+            }
+
+            return $this->twig->render('Troll/profile.html.twig', ['user' => $item, 'session' => true]);
+        }
+        return $this->twig->render('Home/index.html.twig');
+
     }
 
 
@@ -124,4 +142,38 @@ class TrollController extends AbstractController
         $UserManager->delete($id);
         header('Location: /');
     }
+
+    /**
+     * @param $item
+     * @return array|mixed
+     */
+    public function shop($item)
+    {
+        if(empty($_SESSION['basket'])){
+            $_SESSION['basket'] = [$item];
+        }
+        if(!empty($_SESSION['basket'])){
+            array_push($_SESSION['basket'], $item);
+        }
+        return $_SESSION['basket'];
+    }
+
+    /**
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function basket()
+    {
+        if($_SESSION['isConnected'] === true){
+
+            return $this->twig->render('Troll/basket.html.twig', [
+                'basket' => $_SESSION['basket'],
+                'session' => true
+            ]);
+        }
+        return $this->twig->render('Home/index.html.twig');
+    }
+
 }

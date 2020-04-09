@@ -4,17 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{% block title %}Kitten & Bullshit{% endblock %}</title>
-
     <script src="https://kit.fontawesome.com/12c728ad22.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <link href="/assets/css/nes_dark.css" rel="stylesheet" />
     <script src="/assets/lib/vue.min.js"></script>
-
     <script src="/assets/lib/dialog-polyfill.js"></script>
     <script src="/assets/lib/highlight.js"></script>
-    {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41640153-4"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-41640153-4");</script>
@@ -22,9 +18,9 @@
         if (window.navigator.userAgent.toLocaleLowerCase().indexOf('trident') !== -1) {
             window.alert('IE is not supported on this page.')
         }
-
     </script>
     <link rel="stylesheet" href="/assets/css/style.css">
+    {% block stylesheet %}{% endblock %}
 </head>
 
 <body>
@@ -36,13 +32,16 @@
                     <h1><i class="nes-logo brand-logo"></i>Dark Anonymous</h1>
                 </a>
             </div>
-
+            {% if session == true %}
             <div class="social-buttons">
                 <div class="share">
-                    <a href="#" class="nes-btn is-error"><i class="fas fa-sign-out-alt"></i></a>
-                    <a href="#" class="nes-btn is-warning"><i class="fas fa-shopping-basket"></i></a>
+                    <a href="/troll/home" class="nes-btn is-success"><i class="fas fa-store"></i></a>
+                    <a href="/troll/basket" class="nes-btn is-warning"><i class="fas fa-shopping-basket"></i></a>
+                    <a href="/troll/edit/{{ userId }}" class="nes-btn is-primary"><i class="fas fa-user-circle"></i></a>
+                    <a href="/troll/logout" class="nes-btn is-error"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </header>
     <div class="container">

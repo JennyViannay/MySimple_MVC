@@ -338,3 +338,16 @@ img.lazy {
     background-color: #111;
     color: #fff;
 }
+
+.nes-container.member-card {
+    display: flex;
+    padding: 1rem 1.5rem;
+    width: 800px;
+    margin-bottom: 2rem;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}

@@ -1,0 +1,54 @@
+{% extends 'layout_troll.html.twig' %}
+
+{% block content %}
+    <div class="nes-container with-title is-centered">
+        <h1 class="title">Hello {{ user.pseudo}} ! <img src="{{ user.avatar }}" alt="" class="avatar"></h1>
+    </div>
+    <section class="showcase">
+        <section class="nes-container with-title">
+            <h3 class="title">Orders :</h3>
+           <p class="nes-text is-success"> - No order yet.</p>
+        </section>
+    </section>
+    <section class="showcase">
+        <section class="nes-container with-title">
+            <h3 class="title">Change infos :</h3>
+            <div id="inputs" class="item">
+                <form method="post">
+                    <input type="hidden" value="{{ user.id }}" name="id">
+                    <div class="nes-field">
+                        <label for="pseudo_field">Pseudo :</label>
+                        <input type="text" id="pseudo_field" class="nes-input" name="pseudo" value="{{ user.pseudo }}">
+                    </div>
+
+                    <div class="nes-field">
+                        <label for="password_field">Password :</label>
+                        <input type="password" id="password_field" class="nes-input" name="password" value="{{ user.password }}">
+                    </div>
+
+                    <div class="nes-field">
+                        <label for="avatar_field">Avatar :</label>
+                        <input type="text" id="avatar_field" class="nes-input" name="avatar" value="{{ user.avatar }}">
+                    </div>
+                    <section class="nes-container" style="margin-top: 20px;">
+                        <div id="Nintendo-characters" class="item">
+                            <section class="icon-list">
+                                <!-- Copyright Nintendo -->
+                                <i class="nes-mario"></i>
+                                <i class="nes-ash"></i>
+                                <i class="nes-pokeball"></i>
+                                <i class="nes-bulbasaur"></i>
+                                <i class="nes-charmander"></i>
+                                <i class="nes-squirtle"></i>
+                                <i class="nes-kirby"></i>
+                            </section>
+                        </div>
+                    </section>
+                    <div class="nes-field">
+                        <button type="submit" value="Valider" class="nes-btn is-primary">Valider</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+{% endblock %}

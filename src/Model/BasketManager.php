@@ -12,12 +12,12 @@ namespace App\Model;
 /**
  *
  */
-class UserManager extends AbstractManager
+class BasketManager extends AbstractManager
 {
     /**
      *
      */
-    const TABLE = 'user';
+    const TABLE = 'basket';
 
     /**
      *  Initializes this class.
@@ -35,37 +35,14 @@ class UserManager extends AbstractManager
     public function insert(array $item): int
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`pseudo`, `password`) VALUES (:pseudo, :password)");
-        $statement->bindValue('pseudo', $item['pseudo'], \PDO::PARAM_STR);
-        $statement->bindValue('password', $item['password'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`item_id`, `qty`) VALUES (:item_id, :qty)");
+        $statement->bindValue('item_id', $item['item_id'], \PDO::PARAM_STR);
+        $statement->bindValue('qty', $item['qty'], \PDO::PARAM_STR);
 
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
         }
     }
-
-    /**
-     * @param array $item
-     * @return int
-     */
-    public function verify(array $item): int
-    {
-        // prepared request
-        $statement = $this->pdo->prepare("SELECT * FROM " . self::TABLE . " WHERE pseudo =:pseudo");
-        $statement->bindValue('pseudo', $item['pseudo'], \PDO::PARAM_STR);
-        if ($statement->execute()) {
-            $result = $statement->fetchObject();
-            if ($result === false){
-                return 0;
-            }
-            if(isset($result) && $_POST['password'] === $result->password){
-                return $result->id;
-            } else {
-                return 0;
-            }
-        }
-    }
-
 
     /**
      * @param int $id
@@ -88,9 +65,8 @@ class UserManager extends AbstractManager
         // prepared request
         $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `pseudo` = :pseudo, `password` = :password, `avatar` = :avatar WHERE id=:id");
         $statement->bindValue('id', $item['id'], \PDO::PARAM_INT);
-        $statement->bindValue('pseudo', $item['pseudo'], \PDO::PARAM_STR);
-        $statement->bindValue('password', $item['password'], \PDO::PARAM_STR);
-        $statement->bindValue('avatar', $item['avatar'], \PDO::PARAM_STR);
+        $statement->bindValue('item_id', $item['item_id'], \PDO::PARAM_INT);
+        $statement->bindValue('qty', $item['qty'], \PDO::PARAM_INT);
 
         return $statement->execute();
     }
