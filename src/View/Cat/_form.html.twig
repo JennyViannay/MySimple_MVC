@@ -1,0 +1,18 @@
+<div id="inputs" class="item">
+    <form method="post">
+        <input type="hidden" value="{{ item.id }}" name="id">
+        <div class="nes-field">
+            <label for="name_field">Name :</label>
+            <input type="text" id="name_field" class="nes-input" name="name" value="{{ item.name }}">
+        </div>
+
+        <div class="nes-field">
+            <label for="img_field">Image :</label>
+            <input type="text" id="img_field" class="nes-input" name="img" value="{{ item.img }}">
+        </div>
+
+        <div class="nes-field">
+            <button type="submit" value="Valider" class="nes-btn is-primary">Valider</button>
+        </div>
+    </form>
+</div>

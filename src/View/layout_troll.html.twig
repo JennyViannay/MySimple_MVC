@@ -4,27 +4,23 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>{% block title %}Kitten & Bullshit{% endblock %}</title>
-
+    <script src="https://kit.fontawesome.com/12c728ad22.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-    <link href="/assets/css/nes.css" rel="stylesheet" />
+    <link href="/assets/css/nes_dark.css" rel="stylesheet" />
     <script src="/assets/lib/vue.min.js"></script>
-
     <script src="/assets/lib/dialog-polyfill.js"></script>
     <script src="/assets/lib/highlight.js"></script>
-    {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41640153-4"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-41640153-4");</script>
     <script>
         if (window.navigator.userAgent.toLocaleLowerCase().indexOf('trident') !== -1) {
             window.alert('IE is not supported on this page.')
         }
-
     </script>
     <link rel="stylesheet" href="/assets/css/style.css">
+    {% block stylesheet %}{% endblock %}
 </head>
 
 <body>
@@ -33,26 +29,25 @@
         <div class="container">
             <div class="nav-brand">
                 <a href="/">
-                    <h1><i class="snes-jp-logo brand-logo"></i>Kitten & Bullshit</h1>
+                    <h1><i class="nes-logo brand-logo"></i>Dark Anonymous</h1>
                 </a>
             </div>
-
+            {% if session == true %}
             <div class="social-buttons">
-                <p>Menu</p>
                 <div class="share">
-                    <a href="https://twitter.com/share?text=NES.css%EF%BD%9CNES-style%20CSS%20Framework%20%40bc_rikko&url=https://nostalgic-css.github.io/NES.css/" target="_blank"><i class="nes-icon twitter"></i></a>
-                    <a href="https://www.facebook.com/sharer.php?u=https://nostalgic-css.github.io/NES.css/&t=NES.css%EF%BD%9CNES-style%20CSS%20Framework" target="_blank"><i class="nes-icon facebook"></i></a>
-                    <a href="https://www.linkedin.com/shareArticle?url=https%3A//nostalgic-css.github.io/NES.css/&title=NES.css%EF%BD%9CNES-style%20CSS%20Framework" target="_blank"><i class="nes-icon linkedin"></i></a>
-                    <a href="https://github.com/nostalgic-css/NES.css" target="_blank"><i class="nes-icon github"></i></a>
+                    <a href="/troll/home" class="nes-btn is-success"><i class="fas fa-store"></i></a>
+                    <a href="/troll/basket" class="nes-btn is-warning"><i class="fas fa-shopping-basket"></i></a>
+                    <a href="/troll/edit/{{ userId }}" class="nes-btn is-primary"><i class="fas fa-user-circle"></i></a>
+                    <a href="/troll/logout" class="nes-btn is-error"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </header>
     <div class="container">
         <main class="main-content">
-            <a class="github-link" :class="{ active:  scrollPos < 200 }" href="/troll/login" target="_blank" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
-                <p class="nes-balloon from-right">Hi,<br />ready to do some bullshit ?</p>
-                <i class="nes-octocat" :class="animateOctocat ? 'animate' : ''"></i>
+            <a class="github-link" :class="{ active:  scrollPos < 200 }" href="/" rel="noopener" @mouseover="startAnimate" @mouseout="stopAnimate">
+                <i class="nes-charmander"></i>
             </a>
             {% block content %}{% endblock %}
         </main>

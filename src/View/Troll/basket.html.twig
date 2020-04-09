@@ -1,0 +1,40 @@
+{% extends 'layout_troll.html.twig' %}
+
+{% block content %}
+        <div class="nes-container with-title">
+            <h3 class="title">Basket :</h3>
+
+            <div class="nes-table-responsive">
+                <table class="nes-table is-bordered is-dark is-centered">
+                    <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    {% for item in basket %}
+                    <tbody>
+                    <tr>
+                        <td>{{ item.item }}</td>
+                        <td>{{ item.qty }}</td>
+                        <td>{{ item.price }}</td>
+                        <th><i class="fas fa-trash"></i></th>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td></td>
+                            <td>$</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <section class="nes-container is-right">
+            <button type="submit" class="nes-btn is-primary" name="item_id" value="{{ item.id }}">Pay </button>
+        </section>
+{% endblock %}

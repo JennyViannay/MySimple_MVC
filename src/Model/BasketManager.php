@@ -12,12 +12,12 @@ namespace App\Model;
 /**
  *
  */
-class ItemManager extends AbstractManager
+class BasketManager extends AbstractManager
 {
     /**
      *
      */
-    const TABLE = 'article';
+    const TABLE = 'basket';
 
     /**
      *  Initializes this class.
@@ -35,17 +35,14 @@ class ItemManager extends AbstractManager
     public function insert(array $item): int
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`title`, `img`, `content`, `price`) VALUES (:title, :img, :content, :price)");
-        $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
-        $statement->bindValue('img', $item['img'], \PDO::PARAM_STR);
-        $statement->bindValue('content', $item['content'], \PDO::PARAM_STR);
-        $statement->bindValue('price', $item['price'], \PDO::PARAM_INT);
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`item_id`, `qty`) VALUES (:item_id, :qty)");
+        $statement->bindValue('item_id', $item['item_id'], \PDO::PARAM_STR);
+        $statement->bindValue('qty', $item['qty'], \PDO::PARAM_STR);
 
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
         }
     }
-
 
     /**
      * @param int $id
@@ -65,14 +62,11 @@ class ItemManager extends AbstractManager
      */
     public function update(array $item):bool
     {
-
         // prepared request
-        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `title` = :title, `img` = :img, `content` = :content, `price` = :price WHERE id=:id");
+        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `pseudo` = :pseudo, `password` = :password, `avatar` = :avatar WHERE id=:id");
         $statement->bindValue('id', $item['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
-        $statement->bindValue('img', $item['img'], \PDO::PARAM_STR);
-        $statement->bindValue('content', $item['content'], \PDO::PARAM_STR);
-        $statement->bindValue('price', $item['price'], \PDO::PARAM_INT);
+        $statement->bindValue('item_id', $item['item_id'], \PDO::PARAM_INT);
+        $statement->bindValue('qty', $item['qty'], \PDO::PARAM_INT);
 
         return $statement->execute();
     }

@@ -33,10 +33,11 @@ abstract class AbstractController
         $this->twig = new Environment(
             $loader,
             [
-                'cache' => !APP_DEV,
                 'debug' => APP_DEV,
+                'cache' => !APP_DEV,
             ]
         );
         $this->twig->addExtension(new DebugExtension());
     }
+
 }

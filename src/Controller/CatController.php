@@ -9,13 +9,13 @@
 
 namespace App\Controller;
 
-use App\Model\ItemManager;
+use App\Model\CatManager;
 
 /**
- * Class ItemController
+ * Class CatController
  *
  */
-class ItemController extends AbstractController
+class CatController extends AbstractController
 {
 
 
@@ -29,10 +29,10 @@ class ItemController extends AbstractController
      */
     public function index()
     {
-        $itemManager = new ItemManager();
-        $items = $itemManager->selectAll();
+        $catManager = new CatManager();
+        $items = $catManager->selectAll();
 
-        return $this->twig->render('Item/login.html.twig', ['items' => $items]);
+        return $this->twig->render('Cat/index.html.twig', ['items' => $items]);
     }
 
 
@@ -47,10 +47,10 @@ class ItemController extends AbstractController
      */
     public function show(int $id)
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $catManager = new CatManager();
+        $item = $catManager->selectOneById($id);
 
-        return $this->twig->render('Item/show.html.twig', ['item' => $item]);
+        return $this->twig->render('Cat/show.html.twig', ['item' => $item]);
     }
 
 
@@ -65,18 +65,16 @@ class ItemController extends AbstractController
      */
     public function edit(int $id): string
     {
-        $itemManager = new ItemManager();
-        $item = $itemManager->selectOneById($id);
+        $catManager = new CatManager();
+        $item = $catManager->selectOneById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $item['title'] = $_POST['title'];
+            $item['name'] = $_POST['name'];
             $item['img'] = $_POST['img'];
-            $item['content'] = $_POST['content'];
-            $item['price'] = $_POST['price'];
-            $itemManager->update($item);
+            $catManager->update($item);
         }
 
-        return $this->twig->render('Item/edit.html.twig', ['item' => $item]);
+        return $this->twig->render('Cat/edit.html.twig', ['item' => $item]);
     }
 
 
@@ -92,18 +90,16 @@ class ItemController extends AbstractController
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $itemManager = new ItemManager();
+            $catManager = new CatManager();
             $item = [
-                'title' => $_POST['title'],
-                'img' => $_POST['img'],
-                'content' => $_POST['content'],
-                'price' => $_POST['price']
+                'name' => $_POST['name'],
+                'img' => $_POST['img']
             ];
-            $id = $itemManager->insert($item);
-            header('Location:/item/show/' . $id);
+            $id = $catManager->insert($item);
+            header('Location:/cat/show/' . $id);
         }
 
-        return $this->twig->render('Item/add.html.twig');
+        return $this->twig->render('Cat/add.html.twig');
     }
 
 
@@ -114,8 +110,8 @@ class ItemController extends AbstractController
      */
     public function delete(int $id)
     {
-        $itemManager = new ItemManager();
-        $itemManager->delete($id);
-        header('Location:/item/index');
+        $catManager = new CatManager();
+        $catManager->delete($id);
+        header('Location:/cat/index');
     }
 }

@@ -51,12 +51,10 @@ abstract class AbstractManager
         return $this->pdo->query('SELECT * FROM ' . $this->table)->fetchAll();
     }
 
+
     /**
-     * Get one row from database by ID.
-     *
-     * @param  int $id
-     *
-     * @return array
+     * @param $id int
+     * @return mixed
      */
     public function selectOneById(int $id)
     {
