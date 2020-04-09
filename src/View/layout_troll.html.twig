@@ -7,6 +7,7 @@
 
     <title>{% block title %}Kitten & Bullshit{% endblock %}</title>
 
+    <script src="https://kit.fontawesome.com/12c728ad22.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <link href="/assets/css/nes_dark.css" rel="stylesheet" />
     <script src="/assets/lib/vue.min.js"></script>
@@ -15,7 +16,6 @@
     <script src="/assets/lib/highlight.js"></script>
     {% block stylesheet %}{% endblock %}
     <link rel="icon" href="/assets/images/favicon.png">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41640153-4"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-41640153-4");</script>
     <script>
@@ -38,10 +38,9 @@
             </div>
 
             <div class="social-buttons">
-                <p>Menu</p>
                 <div class="share">
-
-                    <a href="https://github.com/nostalgic-css/NES.css" target="_blank"><i class="nes-icon github"></i></a>
+                    <a href="#" class="nes-btn is-error"><i class="fas fa-sign-out-alt"></i></a>
+                    <a href="#" class="nes-btn is-warning"><i class="fas fa-shopping-basket"></i></a>
                 </div>
             </div>
         </div>
