@@ -1,0 +1,14 @@
+<form method="post">
+    <input type="hidden" value="{{ user.id }}" name="id">
+
+    <label for="pseudo" >Pseudo : </label>
+    <input type="text" value="{{ user.pseudo }}" id="pseudo" name="pseudo">
+    
+    <label for="password" >Password : </label>
+    <input type="password" value="{{ user.password }}" id="password" name="password">
+    
+    <label for="avatar" >Avatar : </label>
+    <input type="text" value="{{ user.avatar }}" id="avatar" name="avatar">
+
+    <input type="submit" value="Valider">
+</form>

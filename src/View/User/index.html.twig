@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Users</h1>
+        {% for user in users %}
+        <div>
+            <img src="{{ user.avatar }}" alt="bla">
+            <a href="/user/show/{{ user.id }}">{{ user.pseudo }}</a>
+        {% else %}
+            <p>Nothing to display</p>
+        </div>
+        {% endfor %}
+    <a href="/user/add">Ajouter</a>
+{% endblock %}
