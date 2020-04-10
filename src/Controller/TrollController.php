@@ -30,6 +30,9 @@ class TrollController extends AbstractController
      */
     public function login($pseudo = null, $password = null)
     {
+        if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] == true){
+            header('Location: /troll/home');
+        }
         $userManager = new UserManager();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!empty($_POST['pseudo']) && !empty($_POST['password'])){
