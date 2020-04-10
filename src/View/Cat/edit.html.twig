@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Edit Cat {{ cat.name }}</h1>
+    <form method="post">
+        <input type="hidden" value="{{ cat.id }}" name="id">
+        <input type="text" value="{{ cat.name }}" name="name">
+        <input type="submit" value="Valider">
+    </form>
+    <a href="/cat/show/{{ cat.id }}">Back</a>
+{% endblock %}

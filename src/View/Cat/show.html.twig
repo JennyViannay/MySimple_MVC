@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Cat {{ cat.name }}</h1>
+    <p>{{ cat.id }}. {{ cat.name }}</p>
+
+    <a href="/cat/edit/{{ cat.id }}">Edit</a>
+    <a href="/cat/delete/{{cat.id}}">Supprimer</a>
+    <a href="/cat/index">Back</a>
+{% endblock %}

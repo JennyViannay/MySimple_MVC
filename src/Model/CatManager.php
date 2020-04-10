@@ -12,12 +12,12 @@ namespace App\Model;
 /**
  *
  */
-class ItemManager extends AbstractManager
+class CatManager extends AbstractManager
 {
     /**
      *
      */
-    const TABLE = 'item';
+    const TABLE = 'cat';
 
     /**
      *  Initializes this class.
@@ -35,8 +35,11 @@ class ItemManager extends AbstractManager
     public function insert(array $item): int
     {
         // prepared request
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`title`) VALUES (:title)");
-        $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`name`,`img`,`life`,`atk`) VALUES (:name, :img, :life, :atk)");
+        $statement->bindValue('name', $item['name'], \PDO::PARAM_STR);
+        $statement->bindValue('img', $item['img'], \PDO::PARAM_STR);
+        $statement->bindValue('life', 100, \PDO::PARAM_INT);
+        $statement->bindValue('atk', 10, \PDO::PARAM_INT);
 
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
@@ -64,9 +67,12 @@ class ItemManager extends AbstractManager
     {
 
         // prepared request
-        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `title` = :title WHERE id=:id");
+        $statement = $this->pdo->prepare("UPDATE " . self::TABLE . " SET `name` = :name, `img` = :img, `life` = :life, `atk` = :atk WHERE id=:id");
         $statement->bindValue('id', $item['id'], \PDO::PARAM_INT);
-        $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
+        $statement->bindValue('name', $item['name'], \PDO::PARAM_STR);
+        $statement->bindValue('img', $item['img'], \PDO::PARAM_STR);
+        $statement->bindValue('life', $item['life'], \PDO::PARAM_INT);
+        $statement->bindValue('atk', $item['atk'], \PDO::PARAM_INT);
 
         return $statement->execute();
     }

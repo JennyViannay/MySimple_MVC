@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Cats </h1>
+    <ul>
+        {% for item in cats %}
+            <li>
+                <p>{{ item.name }}</p>
+                <img src="{{ item.img }}" alt="">
+                <p>{{ item.life }}</p>
+                <p>{{ item.atk }}</p>
+                <a href="/cat/show/{{ item.id }}">Voir</a>
+            </li>
+        {% else %}
+            <li>Nothing to display</li>
+        {% endfor %}
+    </ul>
+    <a href="/cat/add">Ajouter</a>
+{% endblock %}
