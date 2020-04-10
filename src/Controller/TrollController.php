@@ -30,6 +30,9 @@ class TrollController extends AbstractController
      */
     public function login($pseudo = null, $password = null)
     {
+        if(isset($_SESSION['isConnected']) && $_SESSION['isConnected'] == true){
+            header('Location: /troll/home');
+        }
         $userManager = new UserManager();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(!empty($_POST['pseudo']) && !empty($_POST['password'])){
@@ -63,7 +66,7 @@ class TrollController extends AbstractController
      */
     public function home()
     {
-        if ($_SESSION['isConnected'] === true){
+        if (isset($_SESSION['isConnected']) && $_SESSION['isConnected'] === true){
             $basket_id = null;
             $itemManager = new ItemManager();
             $items = $itemManager->selectAll();
@@ -166,10 +169,10 @@ class TrollController extends AbstractController
      */
     public function basket()
     {
-        if($_SESSION['isConnected'] === true){
+        if($_SESSION['isConnected'] === true && isset($_SESSION['basket'])){
 
             return $this->twig->render('Troll/basket.html.twig', [
-                'basket' => $_SESSION['basket'],
+                'basket' => $_SESSION['basket'] ? $_SESSION['basket'] : '',
                 'session' => true
             ]);
         }
