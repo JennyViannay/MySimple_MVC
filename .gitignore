@@ -5,3 +5,9 @@
 db.php
 .idea
 .DS_Store
+<<<<<<< Updated upstream
+=======
+public/.DS_Store
+public/assets/.DS_Store
+
+>>>>>>> Stashed changes
