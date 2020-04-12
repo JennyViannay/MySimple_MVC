@@ -53,10 +53,10 @@ abstract class AbstractManager
 
 
     /**
-     * @param $id int
+     * @param $id string
      * @return mixed
      */
-    public function selectOneById(int $id)
+    public function selectOneById(string $id)
     {
         // prepared request
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id=:id");

@@ -11,6 +11,7 @@
                         <th>Item</th>
                         <th>Qty</th>
                         <th>Price</th>
+                        <th>Total</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -20,6 +21,7 @@
                         <td>{{ item.item }}</td>
                         <td>{{ item.qty }}</td>
                         <td>{{ item.price }}</td>
+                        <th></th>
                         <th><i class="fas fa-trash"></i></th>
                     </tr>
                     </tbody>
@@ -28,13 +30,17 @@
                         <tr>
                             <td>Total</td>
                             <td></td>
+                            <td></td>
                             <td>$</td>
+                            <td></td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+        {% if item is not empty %}
         <section class="nes-container is-right">
             <button type="submit" class="nes-btn is-primary" name="item_id" value="{{ item.id }}">Pay </button>
         </section>
+        {% endif %}
 {% endblock %}

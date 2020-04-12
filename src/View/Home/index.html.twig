@@ -1,7 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <section class="nes-container with-title"><h3 class="title">Create a Kitten ? </h3>
+    <section class="nes-container with-title">
+        <h3 class="title">Do you know that ... </h3>
+        <div id="radios" class="item">
+            <div >
+                <p class="note nes-text is-success">{{ fact }}</p>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="nes-container with-title">
+        <h3 class="title">Create a Kitten ? </h3>
         <div id="radios" class="item">
             <div style="background-color:#212529; padding: 1rem 0;">
                 <label>
