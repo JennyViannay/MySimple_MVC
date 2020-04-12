@@ -50,4 +50,9 @@ class HomeController extends AbstractController
         }
         return $this->twig->render('Home/index.html.twig', ['fact' => $facts[array_rand($facts)]]);
     }
+
+    public function notFound()
+    {
+        return $this->twig->render('NotFound/404.html.twig');
+    }
 }

@@ -2,8 +2,8 @@
 
 {% block content %}
     <section class="nes-container with-title">
-        <h3 class="title">Kitten {{ item.name }}</h3>
-        <img src="{{ item.img }}" alr="{{ item.img }}" >
+        <h3 class="title">{{ item.name }}</h3>
+        <img src="{{ item.img }}" alr="{{ item.img }}" style="width: 240px; height: 240px;">
         <p>Vie : {{ item.life }}</p>
         <p>Attaque : {{ item.atk }}</p>
         <a href="/cat/edit/{{ item.id }}" class="nes-btn is-success">Edit</a>
