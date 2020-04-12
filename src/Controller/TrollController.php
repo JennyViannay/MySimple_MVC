@@ -169,12 +169,18 @@ class TrollController extends AbstractController
      */
     public function basket()
     {
-        if($_SESSION['isConnected'] === true && isset($_SESSION['basket'])){
-
-            return $this->twig->render('Troll/basket.html.twig', [
-                'basket' => $_SESSION['basket'] ? $_SESSION['basket'] : '',
-                'session' => true
-            ]);
+        if($_SESSION['isConnected'] === true){
+            if(!empty($_SESSION['basket'])){
+                return $this->twig->render('Troll/basket.html.twig', [
+                    'basket' => $_SESSION['basket'] ? $_SESSION['basket'] : '',
+                    'session' => true
+                ]);
+            } else {
+                return $this->twig->render('Troll/basket.html.twig', [
+                    'basket' => '',
+                    'session' => true
+                ]);
+            }
         }
         return $this->twig->render('Home/index.html.twig');
     }
